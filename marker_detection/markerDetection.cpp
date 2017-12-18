@@ -69,4 +69,20 @@ vector<Point> markerDetection::marker_by_shape(vector<Point> p,Mat img){
 	}
 	return m;
 }
-	
+
+vector<Point> markerDetection::marker_by_area(vector<Point> s,vector<Point> h){
+	double sA,hA,r;
+	sA=contourArea(s);
+	hA=contourArea(h);
+	r=sA/hA;
+	vector<Point> m;
+	if (r>6 && r<8){
+		for (int i=0; i<4; i++){
+			m.push_back(s[i]);
+		}
+	}
+	else{
+		m.push_back(Point(-1,-1));
+	}
+	return m;
+}
