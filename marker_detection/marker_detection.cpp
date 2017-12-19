@@ -6,6 +6,7 @@
 #include "colorDetection.h"
 #include "shapeDetection.h"
 #include "markerDetection.h"
+#include "PoseEstimation.h"
 
 using namespace cv;
 using namespace std;
@@ -21,6 +22,7 @@ int main(){
 	colorDetection cd;
 	shapeDetection sd;
 	markerDetection md;
+	PoseEstimation pd;
 
 	while(1){
 		Mat inp,inpc;
@@ -43,6 +45,8 @@ int main(){
 				vector<Point> p=md.cropPoints(square[k]);
 				vector<Point> m=md.marker_by_shape(p,inp);
 				if(m.size()==4){
+					Mat marker=pd.rotateMarker(inpc,m);
+					md.showFrame("marker",marker);
 					line(inpc,m[0],m[1],Scalar(0,255,0),CV_AA,0);
 					line(inpc,m[1],m[2],Scalar(0,255,0),CV_AA,0);
 					line(inpc,m[2],m[3],Scalar(0,255,0),CV_AA,0);
@@ -72,6 +76,8 @@ int main(){
 		md.showFrame("markerDetected",inpc);
 */
 		
+		
+
 		if (waitKey(3)==27){
 			break;
 		}

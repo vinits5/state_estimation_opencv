@@ -13,6 +13,7 @@ class markerDetection{
 		vector<Point> cropPoints(vector<Point>);
 		vector<Point> marker_by_shape(vector<Point>,Mat);
 		vector<Point> marker_by_area(vector<Point>,vector<Point>);
+		
 };
 
 #endif
